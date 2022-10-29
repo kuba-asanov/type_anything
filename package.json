@@ -2,14 +2,11 @@
   "name": "type_anything",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://kuba-asanov.github.io/type_anything/",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^18.2.0",
