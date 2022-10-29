@@ -1,11 +1,9 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import profile from '/kuba.jpg'
 import './App.css'
 
 function App() {
     colors: ["red", "yellow", "blue", "green", "purple", "pink"]
-
-  const [count, setCount] = useState(0)
 
   const [message, setMessage] = useState('');
 
@@ -20,23 +18,23 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Kuba Asanov</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+      <div>
+        <a href="https://kuba.go.kg" target="_blank">
+          <img height={200} src={profile} className="my profile" alt="Profile" />
+        </a>
       </div>
+      <h1>Kuba Asanov</h1>
       <label htmlFor="message">My Textarea</label>
       <div>
-      <textarea
-        id="message"
-        name="message"
-        value={message}
-        onChange={handleMessageChange}
-        cols={80}
-        rows={5}
-      />
-    </div>
+        <textarea
+          id="message"
+          name="message"
+          value={message}
+          onChange={handleMessageChange}
+          cols={80}
+          rows={5}
+        />
+      </div>
     </div>
   )
 }
