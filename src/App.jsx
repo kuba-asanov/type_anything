@@ -1,20 +1,50 @@
-import { useState } from 'react'
-import profile from '/kuba.jpg'
-import './App.css'
+import { useState, useEffect } from "react";
+import profile from "/kuba.jpg";
+import "./App.css";
 
 function App() {
-    colors: ["red", "yellow", "blue", "green", "purple", "pink"]
+  const textForms = [
+    "uppercase",
+    "capitalize",
+    "lowercase",
+    "revert",
+    "full-width",
+  ];
+  const [isMobile, setIsMobile] = useState(false);
+  const [message, setMessage] = useState("");
+  const [color, setColor] = useState("");
+  const [textTransform, setTextTransform] =
+    useState("");
 
-  const [message, setMessage] = useState('');
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth < 567) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    });
+  }, []);
 
-  const handleMessageChange = event => {
-    // 👇️ update textarea value
-    setMessage(event.target.value);
-    const { colors } = this.state;
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    document.body.style.backgroundColor = color;
-    console.log(event.target.value);
-  };
+  useEffect(() => {
+    setColor(
+      "#" + ((Math.random() * 16777215) | 0).toString(16)
+    );
+
+    setTextTransform(
+      textForms[
+        Math.floor(
+          Math.random() * textForms.length - 1
+        )
+      ]
+    );
+  }, [message]);
+
+  function onChangeValue(e) {
+    const { value } = e.target;
+
+    setMessage(value);
+  }
 
   return (
     <div className="App">
@@ -23,20 +53,32 @@ function App() {
           <img height={200} src={profile} className="my profile" alt="Profile" />
         </a>
       </div>
-      <h1>Kuba Asanov</h1>
-      <label htmlFor="message">My Textarea</label>
+      <h1 style={{
+            color: color,
+            textTransform,
+          }}>
+            Kuba Asanov
+      </h1>
+      <label style={{
+            color: color,
+            textTransform,
+          }} htmlFor="message">My Textarea</label>
       <div>
         <textarea
           id="message"
           name="message"
+          onChange={onChangeValue}
           value={message}
-          onChange={handleMessageChange}
-          cols={80}
-          rows={5}
+          style={{
+            color: color,
+            textTransform,
+          }}
+          cols={isMobile ? 30 : 80}
+          rows={isMobile ? 3 : 5}
         />
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
