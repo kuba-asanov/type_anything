@@ -18,12 +18,18 @@ function App() {
 
   useEffect(() => {
     window.addEventListener("resize", () => {
-      if (window.innerWidth < 567) {
+      if (window.innerWidth < 800) {
         setIsMobile(true);
       } else {
         setIsMobile(false);
       }
     });
+
+    if (window.innerWidth < 800) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
   }, []);
 
   useEffect(() => {
